@@ -1,0 +1,10 @@
+.content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f4f6f8;
+}
+
+.content h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
