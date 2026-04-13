@@ -6,6 +6,13 @@
 
 The goal of this project is to make a part of a web application for managing warehouse inventory. This application will let the administrator do things like view create, edit and delete inventory items using a REST API. The warehouse inventory admin panel is the focus of this project.
 
+## Status
+
+- **[COMPLETE]** feat/base-design
+  - Sidebar
+  - Header
+  - Main Workspace (Dashboard)
+
 ##  Tech Stack
 
 * **Frontend:** React 18+
@@ -59,19 +66,23 @@ npm run dev
 
 /src
 ├── components
-│   ├── inventory
+│   ├── Layout
+│   │   ├── Header
+│   │   ├── MainWorkspace
+│   │   └── Sidebar
+│   ├── inventory // Future Releases
 │   │   ├── InventoryTable.jsx
 │   │   ├── InventoryForm.jsx
 │   │   ├── InventoryDetails.jsx
 │   │   └── ConfirmModal.jsx
-├── pages
+├── pages // Future Releases
 │   ├── AdminInventory.jsx
 │   ├── AdminInventoryCreate.jsx
 │   ├── AdminInventoryEdit.jsx
 │   └── AdminInventoryDetails.jsx
-├── services
+├── services // Future Releases
 │   └── inventoryApi.js
-├── store
+├── store // Future Releases 
 │   └── (context)
 ├── App.jsx
 └── main.jsx
