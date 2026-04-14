@@ -1,0 +1,69 @@
+.tableWrapper {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.table tr:hover {
+  background-color: #f1f5f9;
+}
+
+.itemName {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.InStock { background-color: #dcfce7; color: #166534; }
+.LowStock { background-color: #fef08a; color: #854d0e; }
+.OutofStock { background-color: #fee2e2; color: #991b1b; }
+
+.actionBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.actionBtn:hover {
+  opacity: 1;
+}
