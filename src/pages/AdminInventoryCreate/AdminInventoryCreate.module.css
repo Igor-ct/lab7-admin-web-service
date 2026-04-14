@@ -1,0 +1,13 @@
+
+
+.container {
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.link {
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 500;
+}

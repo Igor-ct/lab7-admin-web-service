@@ -1,13 +1,15 @@
+import { Link } from 'react-router-dom';
 import InventoryTable from '../../components/inventory/InventoryTable/InventoryTable'; 
+import styles from './AdminInventory.module.css';
 
 function AdminInventory() {
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className={styles.container}>
+      <div className={styles.header}>
         <h2>Inventory Management</h2>
-        <button style={{ padding: '0.5rem 1rem', background: '#3498db', color: 'white', border: 'none', borderRadius: '4px' }}>
+        <Link to="/inventory/create" className={styles.addItemBtn}>
           + Add Item
-        </button>
+        </Link>
       </div>
       
       <InventoryTable />

@@ -45,6 +45,28 @@ export const InventoryProvider = ({ children }) => {
     }
   };
 
+  const updateItemText = async (id, textData) => {
+    try {
+      await inventoryApi.updateItemText(id, textData);
+      await fetchItems(); 
+      return { success: true };
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  };
+
+  const updateItemPhoto = async (id, file) => {
+    const formData = new FormData();
+    formData.append('photo', file);
+    try {
+      await inventoryApi.updateItemPhoto(id, formData);
+      await fetchItems(); 
+      return { success: true };
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  };
+
   const deleteItem = async (id) => {
   try {
     await inventoryApi.deleteItem(id);
@@ -57,7 +79,7 @@ export const InventoryProvider = ({ children }) => {
 };
 
   return (
-    <InventoryContext.Provider value={{ items, isLoading, addItem, fetchItems, deleteItem }}>
+    <InventoryContext.Provider value={{ items, isLoading, addItem, fetchItems, updateItemText, updateItemPhoto, deleteItem }}>
       {children}
     </InventoryContext.Provider>
   );
