@@ -2,9 +2,9 @@ import { useState } from 'react';
 import styles from './InventoryTable.module.css';
 
 const DUMMY_INVENTORY = [
-  { id: 1, name: 'Ноутбук Lenovo ThinkPad X1', sku: 'LNV-001', price: 1200, stock: 15, status: 'In Stock' },
-  { id: 2, name: 'Монітор Dell UltraSharp 27"', sku: 'DLL-027', price: 350, stock: 3, status: 'Low Stock' },
-  { id: 3, name: 'Клавіатура Keychron K8', sku: 'KCH-K8', price: 95, stock: 0, status: 'Out of Stock' },
+  { id: 1, name: 'Ноутбук Lenovo ThinkPad X1', sku: 'LNV-001', price: 1200, stock: 15, status: 'In Stock', photo: 'https://placehold.co/50x50/e2e8f0/475569?text=LNV' },
+  { id: 2, name: 'Монітор Dell UltraSharp 27"', sku: 'DLL-027', price: 350, stock: 3, status: 'Low Stock', photo: 'https://placehold.co/50x50/e2e8f0/475569?text=LNV' },
+  { id: 3, name: 'Клавіатура Keychron K8', sku: 'KCH-K8', price: 95, stock: 0, status: 'Out of Stock', photo: '' },
 ];
 
 function InventoryTable() {
@@ -132,6 +132,7 @@ function InventoryTable() {
         <thead>
           <tr>
             <th onClick={() => requestSort('id')} className={styles.sortable}>ID {getSortIcon('id')}</th>
+            <th>Photo</th>
             <th onClick={() => requestSort('name')} className={styles.sortable}>Name {getSortIcon('name')}</th>
             <th onClick={() => requestSort('sku')} className={styles.sortable}>SKU {getSortIcon('sku')}</th>
             <th onClick={() => requestSort('price')} className={styles.sortable}>Price {getSortIcon('price')}</th>
@@ -152,6 +153,13 @@ function InventoryTable() {
             sortedItems.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
+                <td>
+                <img 
+                    src={item.photo || 'https://placehold.co/50x50?text=No+Img'} 
+                    alt={item.name}
+                    className={styles.productImage}
+                />
+                </td>
                 <td className={styles.itemName}>{item.name}</td>
                 <td>{item.sku}</td>
                 <td>${item.price}</td>
