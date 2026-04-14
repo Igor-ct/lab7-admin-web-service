@@ -19,5 +19,23 @@ export const inventoryApi = {
     });
     if (!response.ok) throw new Error('Server error on create');
     return await response.json(); 
+  },
+    updateItemText: async (id, data) => {
+    const response = await fetch(`${BASE_URL}/inventory/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error('Error updating text');
+    return await response.json();
+  },
+
+  updateItemPhoto: async (id, formData) => {
+    const response = await fetch(`${BASE_URL}/inventory/${id}/photo`, {
+      method: 'PUT',
+      body: formData,
+    });
+    if (!response.ok) throw new Error('Error updating photo');
+    return await response.json();
   }
 };

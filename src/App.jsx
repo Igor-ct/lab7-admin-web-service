@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import AdminInventory from './pages/AdminInventory/AdminInventory';
 import AdminInventoryCreate from './pages/AdminInventoryCreate/AdminInventoryCreate';
 import AdminInventoryDetails from './pages/AdminInventoryDetails/AdminInventoryDetails';
+import AdminInventoryEdit from './pages/AdminInventoryEdit/AdminInventoryEdit';
 import NotFound from './pages/NotFound/NotFound';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/inventory" element={<AdminInventory />} />
               <Route path="/inventory/create" element={<AdminInventoryCreate />} />
               <Route path="/inventory/:id" element={<AdminInventoryDetails />} />
+              <Route path="/inventory/edit/:id" element={<AdminInventoryEdit />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </MainWorkspace>

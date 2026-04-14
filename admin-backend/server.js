@@ -18,9 +18,10 @@ const storage = multer.diskStorage({
     cb(null, dir);
   },
   filename: (req, file, cb) => {
-   cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 });
+
 const upload = multer({ storage });
 
 const DB_FILE = './data.json';
@@ -35,47 +36,74 @@ const writeDB = (data) => {
 };
 
 app.get('/inventory', (req, res) => {
-  const items = readDB();
-  res.json(items);
+  res.json(readDB());
 });
 
 app.get('/inventory/:id', (req, res) => {
-  const items = readDB();
-  const item = items.find(i => i.id === req.params.id);
-  if (item) {
-    res.json(item);
-  } else {
-    res.status(404).json({ message: "Product is not found" });
-  }
+  const item = readDB().find(i => i.id === req.params.id);
+  if (!item) return res.status(404).json({ message: "Product is not found" });
+  res.json(item);
 });
 
 app.post('/register', upload.single('photo'), (req, res) => {
   const items = readDB();
-  
+
   const newItem = {
-    id: Date.now().toString(), 
+    id: Date.now().toString(),
     name: req.body.name,
     sku: req.body.sku,
     price: Number(req.body.price),
     stock: Number(req.body.stock),
     description: req.body.description,
-    status: req.body.status,
     photo: req.file ? `http://localhost:${PORT}/uploads/${req.file.filename}` : ''
   };
 
   items.push(newItem);
-  writeDB(items); 
+  writeDB(items);
 
   res.status(201).json({ success: true, item: newItem });
 });
 
-app.delete('/inventory/:id', (req, res) => {
-  let items = readDB();
-  items = items.filter(item => item.id !== req.params.id);
+app.put('/inventory/:id', (req, res) => {
+  const items = readDB();
+  const index = items.findIndex(i => i.id === req.params.id);
+
+  if (index === -1) return res.status(404).json({ message: "Item not found" });
+
+  items[index] = {
+    ...items[index],
+    name: req.body.name,
+    sku: req.body.sku,
+    price: Number(req.body.price),
+    stock: Number(req.body.stock),
+    description: req.body.description
+  };
+
   writeDB(items);
-  res.json({ success: true, message: 'Item deleted' });
+
+  res.json({ success: true, item: items[index] });
+});
+
+app.put('/inventory/:id/photo', upload.single('photo'), (req, res) => {
+  const items = readDB();
+  const index = items.findIndex(i => i.id === req.params.id);
+
+  if (index === -1 || !req.file) {
+    return res.status(400).json({ message: "Error uploading photo" });
+  }
+
+  items[index].photo = `http://localhost:${PORT}/uploads/${req.file.filename}`;
+  writeDB(items);
+
+  res.json({ success: true });
+});
+
+app.delete('/inventory/:id', (req, res) => {
+  const items = readDB().filter(item => item.id !== req.params.id);
+  writeDB(items);
+  res.json({ success: true });
 });
 
 app.listen(PORT, () => {
-  console.log(` http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
