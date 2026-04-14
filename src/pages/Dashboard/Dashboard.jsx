@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from './MainWorkspace.module.css';
+import styles from './Dashboard.module.css';
 
 function Dashboard() {
   const [stats, setStats] = useState({

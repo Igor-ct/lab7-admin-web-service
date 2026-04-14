@@ -1,17 +1,30 @@
-import Header from './components/Layout/Header/Header';
-import Sidebar from './components/Layout/Sidebar/Sidebar';
-import MainWorkspace from './components/Layout/MainWorkspace/MainWorkspace';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/layout/Header/Header';
+import Sidebar from './components/layout/Sidebar/Sidebar';
+import MainWorkspace from './components/layout/MainWorkspace/MainWorkspace';
 import styles from './App.module.css';
+
+import Dashboard from './pages/Dashboard/Dashboard';
+import AdminInventory from './pages/AdminInventory/AdminInventory';
+import AdminInventoryCreate from './pages/AdminInventoryCreate/AdminInventoryCreate';
 
 function App() {
   return (
-    <div className={styles.adminLayout}>
-      <Header />
-      <div className={styles.mainContainer}>
-        <Sidebar />
-        <MainWorkspace />
+    <BrowserRouter>
+      <div className={styles.adminLayout}>
+        <Header />
+        <div className={styles.mainContainer}>
+          <Sidebar />
+          <MainWorkspace>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/inventory" element={<AdminInventory />} />
+              <Route path="/inventory/create" element={<AdminInventoryCreate />} />
+            </Routes>
+          </MainWorkspace>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
