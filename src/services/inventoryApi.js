@@ -7,6 +7,11 @@ export const inventoryApi = {
     return await response.json();
   },
 
+  getItemById: async (id) => {
+    const response = await fetch(`${BASE_URL}/inventory/${id}`);
+    if (!response.ok) throw new Error('Помилка отримання товару');
+    return await response.json();
+  },
   createItem: async (formData) => {
     const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',

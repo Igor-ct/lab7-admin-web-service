@@ -34,11 +34,19 @@ const writeDB = (data) => {
   fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
 };
 
-
-
 app.get('/inventory', (req, res) => {
   const items = readDB();
   res.json(items);
+});
+
+app.get('/inventory/:id', (req, res) => {
+  const items = readDB();
+  const item = items.find(i => i.id === req.params.id);
+  if (item) {
+    res.json(item);
+  } else {
+    res.status(404).json({ message: "Product is not found" });
+  }
 });
 
 app.post('/register', upload.single('photo'), (req, res) => {
