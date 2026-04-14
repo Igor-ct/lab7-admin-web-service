@@ -82,23 +82,6 @@ function InventoryForm({ formData, previewUrl, currentStatus, onChange, onSubmit
               )}
             </div>
 
-
-            <div className={styles.previewBox}>
-              {formData.photo ? (
-                <img 
-                  className={styles.previewImg}
-                  src={formData.photo} 
-                  alt="Preview" 
-                  onError={(e) => { 
-                    e.target.style.display = 'none'; 
-                    e.target.nextSibling.style.display = 'block'; 
-                  }}
-                />
-              ) : (
-                "Paste link"
-              )}
-              <span className={styles.errorText}>Invalid link</span>
-            </div>
           </div>
         </div>
 

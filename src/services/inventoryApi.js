@@ -9,7 +9,7 @@ export const inventoryApi = {
 
   getItemById: async (id) => {
     const response = await fetch(`${BASE_URL}/inventory/${id}`);
-    if (!response.ok) throw new Error('Помилка отримання товару');
+    if (!response.ok) throw new Error('Error cannot get product');
     return await response.json();
   },
   createItem: async (formData) => {

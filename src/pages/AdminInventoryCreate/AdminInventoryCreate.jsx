@@ -64,7 +64,7 @@ function AdminInventoryCreate() {
       dataToSend.append('photo', formData.photo);
     }
 
-    console.log('Віддаємо дані у Store...');
+    console.log('Sending data to Store...');
 
     const result = await addItem(dataToSend);
 
