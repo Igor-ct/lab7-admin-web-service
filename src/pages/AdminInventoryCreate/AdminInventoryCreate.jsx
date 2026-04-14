@@ -1,25 +1,39 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import InventoryForm from '../../components/inventory/InventoryForm/InventoryForm';
+import { useInventory } from '../../store/InventoryContext'; 
 
 function AdminInventoryCreate() {
   const navigate = useNavigate();
+  
+  const { addItem } = useInventory();
 
   const [formData, setFormData] = useState({
-    name: '',
+    name: '', 
     sku: '',
     price: '',
     stock: '',
     description: '',
-    photo: '' 
+    photo: null 
   });
 
+  const [previewUrl, setPreviewUrl] = useState('');
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    const { name, value, type, files } = e.target;
+    
+    if (type === 'file') {
+      const file = files[0];
+      setFormData(prev => ({ ...prev, photo: file }));
+      
+      if (file) {
+        setPreviewUrl(URL.createObjectURL(file));
+      } else {
+        setPreviewUrl('');
+      }
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleCancel = () => {
@@ -35,20 +49,31 @@ function AdminInventoryCreate() {
     return { text: 'In Stock', color: '#166534', bg: '#dcfce7' };
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    const finalData = {
-      ...formData,
-      status: calculateStatus(formData.stock).text
-    };
-
-    console.log('Sending to DB:', finalData);
+    const dataToSend = new FormData();
+    dataToSend.append('name', formData.name);
+    dataToSend.append('sku', formData.sku);
+    dataToSend.append('price', parseFloat(formData.price));
+    dataToSend.append('stock', parseInt(formData.stock));
+    dataToSend.append('description', formData.description);
+    dataToSend.append('status', calculateStatus(formData.stock).text);
     
-    setTimeout(() => {
+    if (formData.photo) {
+      dataToSend.append('photo', formData.photo);
+    }
+
+    console.log('Віддаємо дані у Store...');
+
+    const result = await addItem(dataToSend);
+
+    if (result.success) {
       alert('✅ Item successfully created!');
       navigate('/inventory');
-    }, 800);
+    } else {
+      alert(`❌ Error creating item: ${result.message}`);
+    }
   };
 
   return (
@@ -61,6 +86,7 @@ function AdminInventoryCreate() {
 
       <InventoryForm 
         formData={formData}
+        previewUrl={previewUrl} 
         currentStatus={calculateStatus(formData.stock)}
         onChange={handleChange}
         onSubmit={handleSubmit}

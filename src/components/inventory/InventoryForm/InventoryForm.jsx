@@ -1,6 +1,6 @@
 import styles from './InventoryForm.module.css';
 
-function InventoryForm({ formData, currentStatus, onChange, onSubmit, onCancel }) {
+function InventoryForm({ formData, previewUrl, currentStatus, onChange, onSubmit, onCancel })  {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Create New Item</h2>
@@ -13,8 +13,8 @@ function InventoryForm({ formData, currentStatus, onChange, onSubmit, onCancel }
               <input 
                 className={styles.input} 
                 type="text" 
-                name="inventory_name" 
-                value={formData.inventory_name} 
+                name="name" 
+                value={formData.name} 
                 onChange={onChange} 
                 required 
               />
@@ -61,16 +61,28 @@ function InventoryForm({ formData, currentStatus, onChange, onSubmit, onCancel }
           </div>
 
           <div className={styles.photoColumn}>
-            <label className={styles.label}>Photo (URL)</label>
+            <label className={styles.label}>Photo (Upload)</label>
             <input 
               className={styles.input} 
-              type="url" 
+              type="file" 
               name="photo" 
-              placeholder="https://..." 
-              value={formData.photo} 
+              accept="image/*" 
               onChange={onChange} 
             />
             
+            <div className={styles.previewBox}>
+              {previewUrl ? (
+                <img 
+                  className={styles.previewImg}
+                  src={previewUrl} 
+                  alt="Preview" 
+                />
+              ) : (
+                "No image selected"
+              )}
+            </div>
+
+
             <div className={styles.previewBox}>
               {formData.photo ? (
                 <img 
