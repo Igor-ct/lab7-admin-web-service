@@ -13,6 +13,11 @@ The goal of this project is to make a part of a web application for managing war
   - Header
   - Main Workspace (Dashboard)
 
+- **[Complete]** feat/setup-pages
+  - base routing
+  - 404 page for unknown routes
+  - stub pages
+
 ##  Tech Stack
 
 * **Frontend:** React 18+
@@ -75,11 +80,12 @@ npm run dev
 │   │   ├── InventoryForm.jsx
 │   │   ├── InventoryDetails.jsx
 │   │   └── ConfirmModal.jsx
-├── pages // Future Releases
-│   ├── AdminInventory.jsx
-│   ├── AdminInventoryCreate.jsx
-│   ├── AdminInventoryEdit.jsx
-│   └── AdminInventoryDetails.jsx
+├── pages // stubs 
+│   ├── AdminInventory
+│   ├── AdminInventoryCreate
+│   ├── AdminInventoryEdit
+│   ├── AdminInventoryDetails
+│   └── Dashboard
 ├── services // Future Releases
 │   └── inventoryApi.js
 ├── store // Future Releases 
