@@ -236,3 +236,24 @@
   color: #3498db; 
   font-weight: bold;
 }
+
+.loader {
+  padding: 2rem;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.productImage {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.actionLink {
+  text-decoration: none;
+}

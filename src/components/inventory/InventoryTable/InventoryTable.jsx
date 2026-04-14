@@ -1,21 +1,18 @@
-import { useState } from 'react';
+import { useState } from 'react'; 
+import { Link } from 'react-router-dom';
+import { useInventory } from '../../../store/InventoryContext'; 
 import styles from './InventoryTable.module.css';
 
-const DUMMY_INVENTORY = [
-  { id: 1, name: 'Ноутбук Lenovo ThinkPad X1', sku: 'LNV-001', price: 1200, stock: 15, status: 'In Stock', photo: 'https://placehold.co/50x50/e2e8f0/475569?text=LNV' },
-  { id: 2, name: 'Монітор Dell UltraSharp 27"', sku: 'DLL-027', price: 350, stock: 3, status: 'Low Stock', photo: 'https://placehold.co/50x50/e2e8f0/475569?text=LNV' },
-  { id: 3, name: 'Клавіатура Keychron K8', sku: 'KCH-K8', price: 95, stock: 0, status: 'Out of Stock', photo: '' },
-];
-
 function InventoryTable() {
+  const { items: inventory } = useInventory();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
-  
   const [filterStatus, setFilterStatus] = useState('All');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-
   const [showAdvanced, setShowAdvanced] = useState(false);
+
 
   const requestSort = (key) => {
     let direction = 'asc';
@@ -25,11 +22,12 @@ function InventoryTable() {
     setSortConfig({ key, direction });
   };
 
-  const filteredItems = DUMMY_INVENTORY.filter(item => {
-    const matchesSearch = 
-      item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.sku.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.id.toString().includes(searchTerm);
+  const filteredItems = inventory.filter(item => {
+    const itemName = item.name || '';
+    const nameMatch = itemName.toLowerCase().includes(searchTerm.toLowerCase());
+    const skuMatch = (item.sku || '').toLowerCase().includes(searchTerm.toLowerCase());
+    const idMatch = (item.id || '').toString().includes(searchTerm);
+    const matchesSearch = nameMatch || skuMatch || idMatch;
 
     const matchesStatus = filterStatus === 'All' || item.status === filterStatus;
 
@@ -42,12 +40,8 @@ function InventoryTable() {
   });
 
   const sortedItems = [...filteredItems].sort((a, b) => {
-    if (a[sortConfig.key] < b[sortConfig.key]) {
-      return sortConfig.direction === 'asc' ? -1 : 1;
-    }
-    if (a[sortConfig.key] > b[sortConfig.key]) {
-      return sortConfig.direction === 'asc' ? 1 : -1;
-    }
+    if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === 'asc' ? -1 : 1;
+    if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === 'asc' ? 1 : -1;
     return 0;
   });
 
@@ -64,12 +58,11 @@ function InventoryTable() {
 
   return (
     <div className={styles.tableWrapper}>
-      
       <div className={styles.toolbar}>
         <div className={styles.mainSearchRow}>
           <input 
             type="text" 
-            placeholder="🔍 Search by  Name, SKU or ID..." 
+            placeholder="🔍 Search by Name, SKU or ID..." 
             className={styles.searchInput}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -144,8 +137,8 @@ function InventoryTable() {
         <tbody>
           {sortedItems.length === 0 ? (
             <tr>
-              <td colSpan="7" className={styles.emptyState}>
-                <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>📦</div>
+              <td colSpan="8" className={styles.emptyState}>
+                <div className={styles.emptyIcon}>📦</div>
                 <h4>Products not found</h4>
               </td>
             </tr>
@@ -154,22 +147,23 @@ function InventoryTable() {
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>
-                <img 
+                  <img 
                     src={item.photo || 'https://placehold.co/50x50?text=No+Img'} 
                     alt={item.name}
                     className={styles.productImage}
-                />
+                  />
                 </td>
                 <td className={styles.itemName}>{item.name}</td>
                 <td>{item.sku}</td>
-                <td>${item.price}</td>
-                <td>{item.stock} шт.</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>{item.stock} pcs.</td>
                 <td>
                   <span className={`${styles.badge} ${styles[item.status.replace(/ /g, '')]}`}>
                     {item.status}
                   </span>
                 </td>
                 <td>
+                  <Link to={`/inventory/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>👁️</Link>
                   <button className={styles.actionBtn}>✏️</button>
                   <button className={styles.actionBtn}>🗑️</button>
                 </td>
