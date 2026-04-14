@@ -40,13 +40,24 @@ export const InventoryProvider = ({ children }) => {
       await fetchItems(); 
       return { success: true };
     } catch (err) {
-      console.error('Помилка POST /register:', err);
+      console.error('Error POST /register:', err);
       return { success: false, message: err.message };
     }
   };
 
+  const deleteItem = async (id) => {
+  try {
+    await inventoryApi.deleteItem(id);
+    await fetchItems(); 
+    return { success: true };
+  } catch (err) {
+    console.error("Error delete:", err);
+    return { success: false, message: err.message };
+  }
+};
+
   return (
-    <InventoryContext.Provider value={{ items, isLoading, addItem, fetchItems }}>
+    <InventoryContext.Provider value={{ items, isLoading, addItem, fetchItems, deleteItem }}>
       {children}
     </InventoryContext.Provider>
   );

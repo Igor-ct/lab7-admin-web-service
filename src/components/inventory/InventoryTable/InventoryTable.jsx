@@ -1,11 +1,24 @@
 import { useState } from 'react'; 
 import { Link } from 'react-router-dom';
 import { useInventory } from '../../../store/InventoryContext'; 
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import styles from './InventoryTable.module.css';
 
 function InventoryTable() {
-  const { items: inventory } = useInventory();
+  const { items: inventory, deleteItem } = useInventory();
 
+  const [itemToDelete, setItemToDelete] = useState(null);
+
+    const handleDeleteClick = (id) => {
+      setItemToDelete(id); 
+    };
+  
+  const handleConfirmDelete = async () => {
+    if (itemToDelete) {
+      await deleteItem(itemToDelete);
+      setItemToDelete(null); 
+    }
+  };
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
   const [filterStatus, setFilterStatus] = useState('All');
@@ -165,13 +178,21 @@ function InventoryTable() {
                 <td>
                   <Link to={`/inventory/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>👁️</Link>
                   <Link to={`/inventory/edit/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>✏️</Link>
-                  <button className={styles.actionBtn}>🗑️</button>
+                  <button className={styles.actionBtn} onClick={() => handleDeleteClick(item.id)}>🗑️</button>
                 </td>
               </tr>
             ))
           )}
         </tbody>
       </table>
+      {itemToDelete && (
+        <ConfirmModal 
+          title="Confirm Deletion"
+          message="Are you sure you want to delete this item? This action cannot be undone."
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setItemToDelete(null)}
+        />
+      )}
     </div>
   );
 }
