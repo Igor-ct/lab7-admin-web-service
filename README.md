@@ -18,6 +18,11 @@ The goal of this project is to make a part of a web application for managing war
   - 404 page for unknown routes
   - stub pages
 
+- **[Complete]** feat/inventory-table
+  - add basic search by name, id, sku
+  - add sorting (asc/desc) by name, id, sku, price, stock
+  - add advanced filtering by status and price range (min/max)
+
 ##  Tech Stack
 
 * **Frontend:** React 18+
