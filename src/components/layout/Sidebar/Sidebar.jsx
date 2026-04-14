@@ -6,13 +6,13 @@ function Sidebar() {
     <aside className={styles.sidebar}>
       <nav>
         <ul className={styles.navList}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link to="/" className={styles.navLink}>
             <li className={styles.navItem}>Dashboard</li>
           </Link>
-          <Link to="/inventory" style={{ textDecoration: 'none' }}>
+          <Link to="/inventory" className={styles.navLink}>
             <li className={styles.navItem}>Inventory</li>
           </Link>
-          <Link to="/inventory/create" style={{ textDecoration: 'none' }}>
+          <Link to="/inventory/create" className={styles.navLink}>
             <li className={styles.navItem}>Add New Item</li>
           </Link>
         </ul>

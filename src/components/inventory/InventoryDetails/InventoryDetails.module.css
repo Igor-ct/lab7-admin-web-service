@@ -92,3 +92,7 @@
 }
 
 .closeBtn:hover { color: #000; }
+
+.valueBold {
+  font-weight: 700;
+}

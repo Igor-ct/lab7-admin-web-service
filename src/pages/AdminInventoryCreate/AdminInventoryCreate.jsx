@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import InventoryForm from '../../components/inventory/InventoryForm/InventoryForm';
 import { useInventory } from '../../store/InventoryContext'; 
-
+import styles from './AdminInventoryCreate.module.css';
 function AdminInventoryCreate() {
   const navigate = useNavigate();
   
@@ -78,8 +78,8 @@ function AdminInventoryCreate() {
 
   return (
     <div>
-      <div style={{ marginBottom: '1.5rem', maxWidth: '800px', margin: '0 auto 1.5rem auto' }}>
-        <Link to="/inventory" style={{ color: '#64748b', textDecoration: 'none', fontWeight: '500' }}>
+      <div className={styles.container}>
+        <Link to="/inventory" className={styles.link}>
           ← Back to Inventory
         </Link>
       </div>

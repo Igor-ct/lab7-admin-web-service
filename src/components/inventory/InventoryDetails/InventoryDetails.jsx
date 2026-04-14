@@ -18,7 +18,7 @@ function InventoryDetails({ item, isLoading, error, onClose }) {
 
         <div className={styles.field}>
           <span className={styles.label}>Inventory Name:</span>
-          <span className={styles.value} style={{fontWeight: '700'}}>{item.name}</span>
+          <span className={`${styles.value} ${styles.valueBold}`}>{item.name}</span>
         </div>
 
         <div className={styles.field}>

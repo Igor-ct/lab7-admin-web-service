@@ -30,6 +30,17 @@
   background-color: #f1f5f9;
 }
 
+.table td {
+  white-space: normal; 
+  word-break: break-word;
+}
+
+td:last-child {
+  width: 50px;
+  text-align: center;
+  white-space: normal;
+}
+
 .itemName {
   font-weight: 500;
   color: #0f172a;
