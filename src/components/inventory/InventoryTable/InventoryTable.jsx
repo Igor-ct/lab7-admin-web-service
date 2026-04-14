@@ -164,7 +164,7 @@ function InventoryTable() {
                 </td>
                 <td>
                   <Link to={`/inventory/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>👁️</Link>
-                  <button className={styles.actionBtn}>✏️</button>
+                  <Link to={`/inventory/edit/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>✏️</Link>
                   <button className={styles.actionBtn}>🗑️</button>
                 </td>
               </tr>
