@@ -29,13 +29,19 @@ export const inventoryApi = {
     if (!response.ok) throw new Error('Error updating text');
     return await response.json();
   },
-
   updateItemPhoto: async (id, formData) => {
     const response = await fetch(`${BASE_URL}/inventory/${id}/photo`, {
       method: 'PUT',
       body: formData,
     });
     if (!response.ok) throw new Error('Error updating photo');
+    return await response.json();
+  },
+  deleteItem: async (id) => {
+    const response = await fetch(`${BASE_URL}/inventory/${id}`, {
+      method: 'DELETE', 
+    });
+    if (!response.ok) throw new Error('Error deleting item from server');
     return await response.json();
   }
 };
