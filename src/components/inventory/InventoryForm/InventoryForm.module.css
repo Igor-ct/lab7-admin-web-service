@@ -62,8 +62,8 @@
 
 .previewBox {
   margin-top: 0.5rem;
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  height: 260px; 
   border: 2px dashed #cbd5e1;
   border-radius: 8px;
   display: flex;
