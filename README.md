@@ -23,6 +23,12 @@ The goal of this project is to make a part of a web application for managing war
   - add sorting (asc/desc) by name, id, sku, price, stock
   - add advanced filtering by status and price range (min/max)
 
+- **[Complete]** feat/inventory-crud
+  - implemented full CRUD system for inventory management
+  - designed and built UI for create, read, update, and edit pages
+  - integrated frontend with custom backend API
+  - handled validation and edge cases
+
 ##  Tech Stack
 
 * **Frontend:** React 18+
@@ -70,31 +76,38 @@ npm install
 npm run dev
 ```
 
+5. Start the backend server:
+```bash
+cd admin-backend
+node server.js
+```
+
 ## Project Structure
 
 ```
-
 /src
 ├── components
 │   ├── Layout
 │   │   ├── Header
 │   │   ├── MainWorkspace
 │   │   └── Sidebar
-│   ├── inventory // Future Releases
-│   │   ├── InventoryTable.jsx
-│   │   ├── InventoryForm.jsx
-│   │   ├── InventoryDetails.jsx
-│   │   └── ConfirmModal.jsx
-├── pages // stubs 
+│   ├── inventory 
+│   │   ├── InventoryTable
+│   │   ├── InventoryForm
+│   │   ├── InventoryEdit
+│   │   ├── InventoryDetails
+│   │   └── ConfirmModal
+├── pages 
 │   ├── AdminInventory
 │   ├── AdminInventoryCreate
 │   ├── AdminInventoryEdit
 │   ├── AdminInventoryDetails
+│   ├── NotFound
 │   └── Dashboard
-├── services // Future Releases
+├── services 
 │   └── inventoryApi.js
-├── store // Future Releases 
-│   └── (context)
+├── store 
+│   └── InventoryContext.jsx
 ├── App.jsx
 └── main.jsx
 ```
