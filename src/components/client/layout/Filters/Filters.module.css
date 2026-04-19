@@ -1,0 +1,157 @@
+.filtersContainer {
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.filterSection {
+  margin-bottom: 0; 
+  border-bottom: 1px solid #f8fafc;
+}
+
+.filterSection:last-child {
+  border-bottom: none;
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 1rem 0; 
+  cursor: pointer;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #475569;
+  margin: 0; 
+  letter-spacing: 0.5px;
+}
+
+.chevron {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.open {
+  transform: rotate(-180deg);
+}
+
+.accordionContent {
+  padding-bottom: 1rem;
+  animation: slideDown 0.2s ease-out;
+}
+
+.filterList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; 
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.searchSection {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f1f5f9; 
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.75rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  pointer-events: none; 
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.2rem; 
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  font-size: 0.9rem;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.searchInput::placeholder {
+  color: #94a3b8;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #3498db;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15); 
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+}
+
+.priceInput {
+  width: 100%; 
+  min-width: 0; 
+  padding: 0.4rem 0.5rem; 
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  outline: none;
+  font-family: inherit;
+  font-size: 0.85rem; 
+  color: #0f172a;
+}
+
+.priceInput::placeholder {
+  color: #94a3b8;
+}
+
+.priceInput:focus {
+  border-color: #3498db;
+}
+
+.priceInput::-webkit-outer-spin-button,
+.priceInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.priceInput[type=number] {
+  -moz-appearance: textfield;
+}
+
+.priceSeparator {
+  color: #64748b;
+  font-weight: 500;
+  flex-shrink: 0; 
+}

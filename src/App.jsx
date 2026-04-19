@@ -8,11 +8,17 @@ import AdminInventoryDetails from './pages/admin/AdminInventoryDetails/AdminInve
 import AdminInventoryEdit from './pages/admin/AdminInventoryEdit/AdminInventoryEdit';
 import NotFound from './pages/admin/NotFound/NotFound';
 import AdminLayout from './components/admin/layout/AdminLayout';
+import ClientLayout from './components/client/layout/ClientLayout';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="" element={<ClientLayout />}>
+        
+        
+        </Route>
+
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           
@@ -23,7 +29,7 @@ function App() {
             <Route path="edit/:id" element={<AdminInventoryEdit />} />
           </Route>
         </Route>
-
+           
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

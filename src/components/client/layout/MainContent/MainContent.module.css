@@ -1,0 +1,6 @@
+.mainContent {
+  flex: 1;
+  padding: 2rem;
+  background-color: #ffffff;
+  min-width: 0; 
+}
