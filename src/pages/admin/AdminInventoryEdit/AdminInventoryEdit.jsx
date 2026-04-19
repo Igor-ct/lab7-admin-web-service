@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useInventory } from '../../store/InventoryContext';
-import InventoryEdit from '../../components/inventory/InventoryEdit/InventoryEdit';
+import { useInventory } from '../../../store/InventoryContext';
+import InventoryEdit from '../../../components/admin/inventory/InventoryEdit/InventoryEdit';
 
 function AdminInventoryEdit() {
   const { id } = useParams();
@@ -39,7 +39,7 @@ function AdminInventoryEdit() {
       item={item} 
       onSaveText={handleSaveText}
       onSavePhoto={handleSavePhoto}
-      onClose={() => navigate('/inventory')} 
+      onClose={() => navigate('/admin/inventory')} 
     />
   );
 }

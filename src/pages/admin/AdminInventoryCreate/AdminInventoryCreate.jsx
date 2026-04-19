@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import InventoryForm from '../../components/inventory/InventoryForm/InventoryForm';
-import { useInventory } from '../../store/InventoryContext'; 
+import InventoryForm from '../../../components/admin/inventory/InventoryForm/InventoryForm';
+import { useInventory } from '../../../store/InventoryContext'; 
 import styles from './AdminInventoryCreate.module.css';
 function AdminInventoryCreate() {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ function AdminInventoryCreate() {
   };
 
   const handleCancel = () => {
-    navigate('/inventory');
+    navigate('/admin/inventory');
   };
 
   const calculateStatus = (stockValue) => {
@@ -70,7 +70,7 @@ function AdminInventoryCreate() {
 
     if (result.success) {
       alert('✅ Item successfully created!');
-      navigate('/inventory');
+      navigate('/admin/inventory');
     } else {
       alert(`❌ Error creating item: ${result.message}`);
     }
@@ -79,7 +79,7 @@ function AdminInventoryCreate() {
   return (
     <div>
       <div className={styles.container}>
-        <Link to="/inventory" className={styles.link}>
+        <Link to="/admin/inventory" className={styles.link}>
           ← Back to Inventory
         </Link>
       </div>

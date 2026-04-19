@@ -6,13 +6,13 @@ function Sidebar() {
     <aside className={styles.sidebar}>
       <nav>
         <ul className={styles.navList}>
-          <Link to="/" className={styles.navLink}>
+          <Link to="/admin" className={styles.navLink}>
             <li className={styles.navItem}>Dashboard</li>
           </Link>
-          <Link to="/inventory" className={styles.navLink}>
+          <Link to="/admin/inventory" className={styles.navLink}>
             <li className={styles.navItem}>Inventory</li>
           </Link>
-          <Link to="/inventory/create" className={styles.navLink}>
+          <Link to="/admin/inventory/create" className={styles.navLink}>
             <li className={styles.navItem}>Add New Item</li>
           </Link>
         </ul>

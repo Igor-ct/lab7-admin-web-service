@@ -1,6 +1,6 @@
 import { useState } from 'react'; 
 import { Link } from 'react-router-dom';
-import { useInventory } from '../../../store/InventoryContext'; 
+import { useInventory } from '../../../../store/InventoryContext'; 
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import styles from './InventoryTable.module.css';
 
@@ -176,8 +176,8 @@ function InventoryTable() {
                   </span>
                 </td>
                 <td>
-                  <Link to={`/inventory/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>👁️</Link>
-                  <Link to={`/inventory/edit/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>✏️</Link>
+                  <Link to={`/admin/inventory/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>👁️</Link>
+                  <Link to={`/admin/inventory/edit/${item.id}`} className={`${styles.actionBtn} ${styles.actionLink}`}>✏️</Link>
                   <button className={styles.actionBtn} onClick={() => handleDeleteClick(item.id)}>🗑️</button>
                 </td>
               </tr>

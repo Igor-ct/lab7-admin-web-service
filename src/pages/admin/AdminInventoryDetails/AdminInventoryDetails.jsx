@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useInventory } from '../../store/InventoryContext';
-import { inventoryApi } from '../../services/inventoryApi';
-import InventoryDetails from '../../components/inventory/InventoryDetails/InventoryDetails'; 
+import { useInventory } from '../../../store/InventoryContext';
+import { inventoryApi } from '../../../services/inventoryApi';
+import InventoryDetails from '../../../components/admin/inventory/InventoryDetails/InventoryDetails'; 
 
 function AdminInventoryDetails() {
   const { id } = useParams();
@@ -33,7 +33,7 @@ function AdminInventoryDetails() {
     getData();
   }, [id, items]);
 
-  const handleClose = () => navigate('/inventory');
+  const handleClose = () => navigate('/admin/inventory');
 
   return (
     <InventoryDetails 
