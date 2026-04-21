@@ -9,13 +9,13 @@ import AdminInventoryEdit from './pages/admin/AdminInventoryEdit/AdminInventoryE
 import NotFound from './pages/admin/NotFound/NotFound';
 import AdminLayout from './components/admin/layout/AdminLayout';
 import ClientLayout from './components/client/layout/ClientLayout';
-
+import Gallery from './pages/client/Gallery/Gallery';
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="" element={<ClientLayout />}>
-        
+          <Route index element={<Gallery />} />
         
         </Route>
 
