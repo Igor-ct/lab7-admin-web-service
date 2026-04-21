@@ -1,18 +1,45 @@
+import { useInventory } from '../../../store/InventoryContext'; 
 import HeroVideo from './HeroVideo/HeroVideo';
 import ProductRow from '../../../components/client/UI/ProductRow/ProductRow';
 import styles from './Gallery.module.css';
 
 export default function Gallery() {
-  const dummyLaptops = [1, 2, 3, 4, 5, 6, 7]; 
+  const { items, isLoading, error, fetchItems } = useInventory();
+
+  const lowestPriceItems = items ? [...items].sort((a, b) => a.price - b.price).slice(0, 10) : [];
+  const highestPriceItems = items ? [...items].sort((a, b) => b.price - a.price).slice(0, 10) : [];
+  
+  const gamingBeastsSkus = ['SKU-001', 'SKU-002', 'SKU-003']; 
+  const gamingItems = items ? items.filter(item => gamingBeastsSkus.includes(item.sku)) : [];
 
   return (
     <div className={styles.galleryContainer}>
       <HeroVideo />
 
       <div className={styles.rowsContainer}>
-        <ProductRow title="🔥 The Lowest Price" items={dummyLaptops} />
-        <ProductRow title="💎 Premium & Highest Price" items={dummyLaptops} />
-        <ProductRow title="🎮 Gaming Beasts" items={dummyLaptops} />
+        <ProductRow 
+          title="🔥 The Lowest Price" 
+          items={lowestPriceItems} 
+          isLoading={isLoading} 
+          error={error} 
+          onRetry={fetchItems} 
+        />
+        
+        <ProductRow 
+          title="💎 The Highest Price" 
+          items={highestPriceItems} 
+          isLoading={isLoading} 
+          error={error} 
+          onRetry={fetchItems} 
+        />
+        
+        <ProductRow 
+          title="🎮 Gaming Beasts" 
+          items={gamingItems} 
+          isLoading={isLoading} 
+          error={error} 
+          onRetry={fetchItems} 
+        />
       </div>
     </div>
   );

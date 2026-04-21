@@ -27,17 +27,78 @@
 .scrollContainer {
   display: flex;
   gap: 1.5rem;
-  overflow-x: auto; 
-  padding-bottom: 1rem; 
+  overflow-x: auto;
   
-  scroll-snap-type: x mandatory; 
+  padding: 0.5rem 1rem 1.5rem 1rem; 
+  
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 .scrollContainer::-webkit-scrollbar {
-  display: none;
+  display: none; 
 }
-.scrollContainer {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  min-height: 200px;
+  background-color: #fef2f2; 
+  border: 1px solid #fca5a5;
+  border-radius: 16px;
+  color: #b91c1c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 2rem;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.retryBtn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retryBtn:hover {
+  background-color: #dc2626;
+}
+
+.skeletonCard {
+  width: 280px;
+  height: 380px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: pulse 1.5s infinite linear;
+}
+
+@keyframes pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

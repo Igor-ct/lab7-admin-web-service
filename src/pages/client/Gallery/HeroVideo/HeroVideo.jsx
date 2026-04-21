@@ -76,7 +76,6 @@ export default function HeroVideo() {
       const firstEndCloneIndex = cloneCount + mockVideos.length;
       const lastStartCloneIndex = cloneCount - 1;
 
-      // Стрибок ВПЕРЕД
       if (activeIndex === firstEndCloneIndex) {
         setIsJumping(true); 
         const targetIndex = cloneCount;
@@ -94,7 +93,6 @@ export default function HeroVideo() {
           });
         });
       }
-      // Стрибок НАЗАД
       else if (activeIndex === lastStartCloneIndex) {
         setIsJumping(true); 
         const targetIndex = cloneCount + mockVideos.length - 1;
