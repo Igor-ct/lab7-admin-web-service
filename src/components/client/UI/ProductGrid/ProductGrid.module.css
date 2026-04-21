@@ -1,0 +1,33 @@
+.gridWrapper {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.gridTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 320px);
+  justify-content: start; 
+  gap: 2rem;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box; 
+  min-height: 440px; 
+  background-color: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 600;
+}

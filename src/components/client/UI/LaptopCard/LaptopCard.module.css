@@ -1,8 +1,9 @@
 .card {
-  width: 320px; 
+  width: 100%; 
+  max-width: 320px; 
   height: 440px; 
   flex-shrink: 0; 
-  scroll-snap-align: start; 
+  scroll-snap-align: start;
   
   background: white;
   border: 1px solid #e2e8f0;
@@ -162,3 +163,13 @@
 .cartBtn { background: #0f172a; color: white; border-color: #0f172a; }
 .cartBtn:hover { background: #3b82f6; border-color: #3b82f6; color: white; }
 .cartBtn:disabled { background-color: #cbd5e1; border-color: #cbd5e1; cursor: not-allowed; color: #94a3b8; }
+
+.favoritedBtn {
+  color: #ef4444; 
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+.favoritedBtn:hover {
+  background-color: #fee2e2;
+  color: #dc2626;
+}

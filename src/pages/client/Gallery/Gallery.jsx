@@ -22,7 +22,8 @@ export default function Gallery() {
           items={lowestPriceItems} 
           isLoading={isLoading} 
           error={error} 
-          onRetry={fetchItems} 
+          onRetry={fetchItems}
+          linkTo="/category/lowest-price" 
         />
         
         <ProductRow 
@@ -31,6 +32,7 @@ export default function Gallery() {
           isLoading={isLoading} 
           error={error} 
           onRetry={fetchItems} 
+          linkTo="/category/highest-price"
         />
         
         <ProductRow 
@@ -39,6 +41,7 @@ export default function Gallery() {
           isLoading={isLoading} 
           error={error} 
           onRetry={fetchItems} 
+          linkTo="/category/gaming-beasts"
         />
       </div>
     </div>
