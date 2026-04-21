@@ -1,22 +1,26 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
 import Dashboard from './pages/admin/Dashboard/Dashboard';
 import AdminInventory from './pages/admin/AdminInventory/AdminInventory';
 import AdminInventoryCreate from './pages/admin/AdminInventoryCreate/AdminInventoryCreate';
 import AdminInventoryDetails from './pages/admin/AdminInventoryDetails/AdminInventoryDetails';
 import AdminInventoryEdit from './pages/admin/AdminInventoryEdit/AdminInventoryEdit';
-import NotFound from './pages/admin/NotFound/NotFound';
+import NotFound from './pages/NotFound/NotFound';
 import AdminLayout from './components/admin/layout/AdminLayout';
 import ClientLayout from './components/client/layout/ClientLayout';
 import Gallery from './pages/client/Gallery/Gallery';
+import FavoritesPage from './pages/client/FavoritesPage/FavoritesPage';
+import SeeAllPage from './pages/client/SeeAllPage/SeeAllPage'; 
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<ClientLayout />}>
+        <Route path="/" element={<ClientLayout />}>
           <Route index element={<Gallery />} />
-        
+          <Route path="favorites" element={<FavoritesPage />} />
+          
+          <Route path="category/:categoryId" element={<SeeAllPage />} />
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>

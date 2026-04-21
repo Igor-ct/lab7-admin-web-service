@@ -1,45 +1,35 @@
-.rowWrapper {
-  margin-bottom: 2.5rem;
+.pageContainer {
+  width: 100%;
+  max-width: 1150px; 
+  margin: 0 auto;
+  
+  padding: 2rem 0; 
+  
+  box-sizing: border-box;
+  min-height: fit-content;
 }
 
-.rowHeader {
+.backBtn {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-}
-
-.rowTitle {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #0f172a;
-  margin: 0;
-}
-
-.seeAllBtn {
-  background: none;
+  margin-left: 1rem;  
+  gap: 0.5rem;
+  background: transparent;
   border: none;
-  color: #3b82f6;
+  color: #64748b;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.scrollContainer {
-  display: flex;
-  gap: 1.5rem;
-  overflow-x: auto;
-  
-  padding: 0.5rem 1rem 1.5rem 1rem; 
-  
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none; 
-  -ms-overflow-style: none; 
+.backBtn:hover {
+  color: #0f172a;
+  transform: translateX(-4px);
 }
 
-.scrollContainer::-webkit-scrollbar {
-  display: none; 
-}
 
 .errorState {
   display: flex;
@@ -48,11 +38,8 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  
   box-sizing: border-box; 
-  
   min-height: 440px; 
-  
   background-color: #fef2f2; 
   border: 1px solid #fca5a5;
   border-radius: 16px;
@@ -62,24 +49,6 @@
   text-align: center;
   padding: 2rem;
 }
-
-.emptyState {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  
-  box-sizing: border-box; 
-  min-height: 440px; 
-  
-  background-color: #f8fafc;
-  border: 2px dashed #cbd5e1;
-  border-radius: 16px;
-  color: #64748b;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
 
 .retryBtn {
   background-color: #ef4444;
@@ -96,17 +65,29 @@
   background-color: #dc2626;
 }
 
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 320px);
+  
+  justify-content: start;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 750px) {
+  .skeletonGrid {
+    justify-content: center;
+  }
+}
+
 .skeletonCard {
   width: 320px;
   height: 440px; 
-  
-  flex-shrink: 0;
   border-radius: 16px;
   background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
   background-size: 200% 100%;
   animation: pulse 1.5s infinite linear;
 }
-
 
 @keyframes pulse {
   0% { background-position: 200% 0; }

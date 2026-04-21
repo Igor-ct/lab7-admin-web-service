@@ -7,8 +7,8 @@ function NotFound() {
       <h2 className={styles.errorCode}>404</h2>
       <h3 className={styles.title}>Resource not found</h3>
       
-      <Link to="/admin" className={styles.link}>
-        Return to Dashboard
+      <Link to="/" className={styles.link}>
+        Return to Main Page
       </Link>
     </div>
   );

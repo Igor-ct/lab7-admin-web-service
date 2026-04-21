@@ -1,8 +1,8 @@
+import { Link } from 'react-router-dom';
 import LaptopCard from '../LaptopCard/LaptopCard';
 import styles from './ProductRow.module.css';
 
-export default function ProductRow({ title, items, isLoading, error, onRetry }) {
-  
+export default function ProductRow({ title, items, isLoading, error, onRetry, linkTo }) {  
   if (isLoading) {
     return (
       <div className={styles.rowWrapper}>
@@ -26,7 +26,7 @@ export default function ProductRow({ title, items, isLoading, error, onRetry }) 
         </div>
         <div className={styles.errorState}>
           <span>⚠️ {error}</span>
-          <button onClick={onRetry} className={styles.retryBtn}>Спробувати ще раз</button>
+          <button onClick={onRetry} className={styles.retryBtn}>Reload</button>
         </div>
       </div>
     );
@@ -36,13 +36,15 @@ export default function ProductRow({ title, items, isLoading, error, onRetry }) 
     <div className={styles.rowWrapper}>
       <div className={styles.rowHeader}>
         <h2 className={styles.rowTitle}>{title}</h2>
-        <button className={styles.seeAllBtn}>See all ➔</button>
+        <Link to={linkTo} className={styles.seeAllBtn}>
+            See all ➔
+          </Link>
       </div>
       
       <div className={styles.scrollContainer}>
         {!items || items.length === 0 ? (
           <div className={styles.emptyState}>
-            <span>🛒 Наразі в цій категорії немає товарів.</span>
+            <span>🛒 No items.</span>
           </div>
         ) : (
           items.map((item) => (

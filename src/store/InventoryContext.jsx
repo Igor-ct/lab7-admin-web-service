@@ -31,11 +31,11 @@ export const InventoryProvider = ({ children }) => {
         return; 
       } catch (err) {
         attempts--;
-        console.warn(`Запит впав. Залишилось спроб: ${attempts}`);
+        console.warn(`Request failed. Attempts remaining: ${attempts}`);
         
         if (attempts === 0) {
           console.error("Critical Error GET /inventory:", err);
-          setError("Не вдалося завантажити товари після декількох спроб. Перевірте з'єднання.");
+          setError("Failed to load products after multiple attempts. Check your connection.");
           setIsLoading(false);
         } else {
           await new Promise(res => setTimeout(res, 1000));

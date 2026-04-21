@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
 
 export default function Header() {
@@ -11,13 +12,13 @@ export default function Header() {
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
         </button>
-        <div className={styles.logo}>LAPTOP WORLD</div>
+        <Link to="/" className={styles.logo}>LAPTOP WORLD</Link>
       </div>
 
       <div className={styles.rightGroup}>
-        <button className={styles.iconBtn} aria-label="Favorites">
+        <Link to="/favorites" className={styles.iconBtn} aria-label="Favorites">
           ❤️
-        </button>
+        </Link>
         <button className={styles.iconBtn} aria-label="Cart">
           🛒
         </button>
