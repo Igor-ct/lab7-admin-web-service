@@ -1,0 +1,230 @@
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #ffffff; 
+}
+
+.trackContainer {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden; 
+}
+
+.bridgeLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: #0f172a;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+.card {
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.4s ease, transform 0.4s ease, opacity 0.3s ease;
+}
+
+.noTransition,
+.noTransition .overlay,
+.noTransition .inactiveTitle {
+  transition: none !important;
+}
+
+.activeCard {
+  width: 60%;
+  height: 420px;
+  background-color: #1e3a8a; 
+  box-shadow: 0 10px 25px -5px rgba(30, 58, 138, 0.4);
+  z-index: 3;
+}
+
+.inactiveCard {
+  width: 25%;
+  height: 360px;
+  background-color: #e0f2fe; 
+  border: 3px solid #0f172a; 
+  opacity: 0.8;
+}
+
+.inactiveCard:hover {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+.verticalLines {
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 1rem;
+  right: 1rem;
+  border-left: 1px solid rgba(15, 23, 42, 0.2);
+  border-right: 1px solid rgba(15, 23, 42, 0.2);
+  pointer-events: none;
+}
+
+.videoPlaceholder {
+  position: absolute;
+  top: 35%;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.activeCard .videoPlaceholder { 
+  color: rgba(255, 255, 255, 0.2); 
+  font-size: 2rem; 
+}
+
+.inactiveCard .videoPlaceholder { 
+  color: #94a3b8; 
+  font-size: 1rem; 
+  text-align: center; 
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(30, 58, 138, 0.2) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  color: white;
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.activeCard .overlay {
+  opacity: 1;
+  transform: scale(1); 
+  pointer-events: auto;
+}
+
+.title { 
+  font-size: 2.5rem; 
+  margin: 0 0 0.5rem 0; 
+  white-space: nowrap; 
+}
+
+.subtitle { 
+  font-size: 1.1rem; 
+  color: #bfdbfe; 
+  margin-bottom: 1.5rem; 
+  white-space: nowrap; 
+}
+
+.ctaButton {
+  align-self: flex-start;
+  padding: 0.8rem 2rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.inactiveTitle {
+  position: absolute;
+  bottom: 1.5rem;
+  color: #0f172a;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  padding: 0 1rem;
+  white-space: nowrap;
+  
+  opacity: 0;
+  transform: translateY(10px); 
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.inactiveCard .inactiveTitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navZone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navLeft {
+  left: 0;
+}
+
+.navRight {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.chevronIcon {
+  width: 40px;
+  height: 100px;
+  stroke-width: 1.5px;
+  color: rgba(15, 23, 42, 0.8); 
+  transition: transform 0.2s ease;
+}
+
+.navZone:hover .chevronIcon {
+  transform: scaleY(1.2);
+  color: #1e3a8a;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.dot {
+  width: 12px; 
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #1e3a8a;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.activeDot { 
+  background-color: #1e3a8a; 
+}

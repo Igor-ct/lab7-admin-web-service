@@ -1,0 +1,43 @@
+.rowWrapper {
+  margin-bottom: 2.5rem;
+}
+
+.rowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.rowTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.seeAllBtn {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scrollContainer {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto; 
+  padding-bottom: 1rem; 
+  
+  scroll-snap-type: x mandatory; 
+  scroll-behavior: smooth;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+.scrollContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
