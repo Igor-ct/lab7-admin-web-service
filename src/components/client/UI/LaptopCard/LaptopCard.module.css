@@ -1,67 +1,164 @@
 .card {
-  min-width: 280px; 
+  width: 320px; 
+  height: 440px; 
   flex-shrink: 0; 
-  
   scroll-snap-align: start; 
   
   background: white;
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 16px;
+  overflow: visible; 
+  
+  position: relative;
+  z-index: 1; 
+
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s, z-index 0s;
 }
 
-.card:hover {
+.card:hover, .cardExpanded {
+  z-index: 50; 
   transform: translateY(-4px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
 .imagePlaceholder {
-  height: 160px;
+  height: 180px;
   background-color: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
+  font-weight: bold;
+  border-bottom: 1px solid #f1f5f9;
+  position: relative; 
+  border-top-left-radius: 15px; 
+  border-top-right-radius: 15px;
 }
 
-.info {
+.statusBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+.badgeSuccess { background-color: #10b981; } 
+.badgeWarning { background-color: #f59e0b; } 
+.badgeDanger { background-color: #6c6c6c; }  
+.badgeDefault { background-color: #000000; }
+
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.cardExpanded .productImage {
+  transform: scale(1.12); 
+}
+
+.infoContainer {
   padding: 1.25rem;
+  flex-grow: 1; 
+  position: relative; 
 }
 
 .name {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem 0; 
   font-size: 1.1rem;
+  font-weight: 700;
   color: #0f172a;
+  line-height: 1.4;
+  
+  height: 3.08rem; 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.specs {
+.description {
   font-size: 0.85rem;
+  line-height: 1.5;
   color: #64748b;
-  margin-bottom: 1rem;
+  margin: 0;
+  
+  height: 2.55rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.bottomRow {
+.popoutOverlay {
+  position: absolute;
+  top: -10px; 
+  
+  left: 0;
+  right: 0;
+  
+  max-height: 220px; 
+  overflow-y: auto; 
+  
+  background-color: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+}
+
+.popoutOverlay::-webkit-scrollbar {
+  width: 4px;
+}
+.popoutOverlay::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.showPopout {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.uiContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 1.25rem;
+  background-color: #f8fafc; 
+  border-top: 1px solid #e2e8f0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
-.price {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #0f172a;
+.price { font-size: 1.25rem; font-weight: 800; color: #0f172a; }
+.actions { display: flex; gap: 0.5rem; }
+.actionBtn {
+  background: white; border: 1px solid #e2e8f0; padding: 0.5rem;
+  border-radius: 8px; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; color: #64748b; transition: all 0.2s ease;
 }
-
-.cartBtn {
-  background: #f1f5f9;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.cartBtn:hover {
-  background: #e2e8f0;
-}
+.actionBtn:hover { background: #e2e8f0; color: #0f172a; }
+.activeExpand .icon { transform: rotate(180deg); color: #0f172a; }
+.icon { width: 18px; height: 18px; stroke-width: 2; transition: transform 0.2s ease; }
+.cartBtn { background: #0f172a; color: white; border-color: #0f172a; }
+.cartBtn:hover { background: #3b82f6; border-color: #3b82f6; color: white; }
+.cartBtn:disabled { background-color: #cbd5e1; border-color: #cbd5e1; cursor: not-allowed; color: #94a3b8; }

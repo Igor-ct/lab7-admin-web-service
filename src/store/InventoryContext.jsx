@@ -8,24 +8,39 @@ export const useInventory = () => useContext(InventoryContext);
 export const InventoryProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null); 
 
   const fetchItems = async () => {
     setIsLoading(true);
-    try {
-      const data = await inventoryApi.getAllItems();
-      
-      const processedData = data.map(item => ({
-        ...item,
-        stock: Number(item.stock),
-        price: Number(item.price),
-        status: Number(item.stock) === 0 ? 'Out of Stock' : (Number(item.stock) <= 5 ? 'Low Stock' : 'In Stock')
-      }));
+    setError(null);
+    let attempts = 3; 
 
-      setItems(processedData);
-    } catch (err) {
-      console.error("Error GET /inventory:", err);
-    } finally {
-      setIsLoading(false);
+    while (attempts > 0) {
+      try {
+        const data = await inventoryApi.getAllItems();
+        
+        const processedData = data.map(item => ({
+          ...item,
+          stock: Number(item.stock),
+          price: Number(item.price),
+          status: Number(item.stock) === 0 ? 'Out of Stock' : (Number(item.stock) <= 5 ? 'Low Stock' : 'In Stock')
+        }));
+
+        setItems(processedData);
+        setIsLoading(false);
+        return; 
+      } catch (err) {
+        attempts--;
+        console.warn(`Запит впав. Залишилось спроб: ${attempts}`);
+        
+        if (attempts === 0) {
+          console.error("Critical Error GET /inventory:", err);
+          setError("Не вдалося завантажити товари після декількох спроб. Перевірте з'єднання.");
+          setIsLoading(false);
+        } else {
+          await new Promise(res => setTimeout(res, 1000));
+        }
+      }
     }
   };
 
@@ -79,7 +94,7 @@ export const InventoryProvider = ({ children }) => {
 };
 
   return (
-    <InventoryContext.Provider value={{ items, isLoading, addItem, fetchItems, updateItemText, updateItemPhoto, deleteItem }}>
+    <InventoryContext.Provider value={{ items, isLoading, error, fetchItems, addItem, updateItemText, updateItemPhoto, deleteItem }}>
       {children}
     </InventoryContext.Provider>
   );
