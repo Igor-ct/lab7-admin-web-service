@@ -19,9 +19,7 @@ export default function LaptopCard({ product }) {
   };
 
   const productId = product._id || product.id;
-  
   const favorited = isFavorite(productId);
-
   const isOutOfStock = product.status === 'Out of Stock';
 
   const formattedPrice = new Intl.NumberFormat('en-US', {
@@ -37,7 +35,6 @@ export default function LaptopCard({ product }) {
         <div className={`${styles.statusBadge} ${getBadgeStyle(product.status)}`}>
           {product.status}
         </div>
-        
         {product.photo ? (
            <img src={product.photo} alt={product.name} className={styles.productImage} />
         ) : (
@@ -45,12 +42,14 @@ export default function LaptopCard({ product }) {
         )}
       </div>
 
-      <div className={styles.infoContainer}>
+      <div className={styles.middleSection}>
         
-        <h3 className={styles.name}>{product.name}</h3> 
-        <p className={styles.description}>{product.description}</p>
+        <div className={styles.shortInfo}>
+          <h3 className={styles.name}>{product.name}</h3> 
+          <p className={styles.description}>{product.description}</p>
+        </div>
 
-        <div className={`${styles.popoutOverlay} ${isExpanded ? styles.showPopout : ''}`}>
+        <div className={`${styles.expandedInfo} ${isExpanded ? styles.showExpanded : ''}`}>
           <h3 className={styles.fullName}>{product.name}</h3>
           <p className={styles.fullDescription}>{product.description}</p>
         </div>
@@ -64,7 +63,7 @@ export default function LaptopCard({ product }) {
           <button 
             className={`${styles.actionBtn} ${isExpanded ? styles.activeExpand : ''}`} 
             onClick={() => setIsExpanded(!isExpanded)}
-            title="Читати більше"
+            title={isExpanded ? "Згорнути" : "Читати більше"}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={styles.icon}>
               <polyline points="6 9 12 15 18 9"></polyline>
@@ -76,12 +75,7 @@ export default function LaptopCard({ product }) {
             onClick={() => toggleFavorite(productId)}
             title={favorited ? "Видалити з улюбленого" : "Додати в улюблене"}
           >
-            <svg 
-              viewBox="0 0 24 24" 
-              fill={favorited ? "currentColor" : "none"} 
-              stroke="currentColor" 
-              className={styles.icon}
-            >
+            <svg viewBox="0 0 24 24" fill={favorited ? "currentColor" : "none"} stroke="currentColor" className={styles.icon}>
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
             </svg>
           </button>

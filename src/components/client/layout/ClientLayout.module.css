@@ -2,24 +2,23 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f1f5f9; 
+  background-color: #f1f5f9;
 }
 
 .middleSection {
   display: flex;
   flex: 1;
   width: 100%;
-  
-  max-width: 1400px; 
-  margin: 0 auto; 
-  padding: 2rem; 
-  gap: 2rem; 
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
+  overflow-x: hidden;
 }
 
 .filtersArea {
   width: 250px;
   flex-shrink: 0;
-  
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
@@ -31,11 +30,50 @@
   flex: 1;
   padding: 2rem;
   background-color: #ffffff;
-  min-width: 0; 
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .middleSection {
+    flex-direction: column;
+
+    margin: 0;
+    max-width: 100%;
+
+    padding: 1rem;
+    gap: 1rem;
+
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .mainContent {
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
   .filtersArea {
-    display: none; 
+    width: 100%;
+    order: 2;
   }
+
+  .mainContent {
+    width: 100%;
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .middleSection {
+    padding: 0.75rem;
+  }
+
+  .mainContent {
+    padding: 0.75rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
 }

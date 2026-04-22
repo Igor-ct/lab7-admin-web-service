@@ -228,3 +228,147 @@
 .activeDot { 
   background-color: #1e3a8a; 
 }
+
+@media (max-width: 1400px) {
+  .overlay {
+    padding: 2rem; 
+  }
+
+  .title {
+    font-size: 2rem;
+    white-space: normal;     
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    white-space: normal;      
+    line-height: 1.3;
+  }
+
+  .ctaButton {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .trackContainer {
+    height: 360px;
+  }
+
+  .activeCard {
+    height: 360px;
+    width: 65%; 
+  }
+
+  .inactiveCard {
+    height: 300px;
+    width: 30%;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .overlay {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .trackContainer {
+    height: 320px;
+  }
+
+  .track {
+    gap: 1rem;
+  }
+
+  .activeCard {
+    width: 75%;
+    height: 320px;
+  }
+
+  .inactiveCard {
+    width: 35%;
+    height: 260px;
+    opacity: 0.7;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    white-space: normal; 
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  .overlay {
+    padding: 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 0.7rem 1.5rem;
+  }
+
+  .navZone {
+    width: 50px; 
+  }
+
+  .chevronIcon {
+    width: 30px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trackContainer {
+    height: 280px;
+  }
+
+  .track {
+    gap: 0.75rem;
+  }
+
+  .activeCard {
+    width: 80%;
+    height: 280px;
+  }
+
+  .inactiveCard {
+    width: 40%;
+    height: 220px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .overlay {
+    padding: 1rem;
+  }
+
+  .bridgeLine {
+    height: 2px;
+  }
+
+  .verticalLines {
+    display: none; 
+  }
+
+  .navZone {
+    width: 40px;
+  }
+}
