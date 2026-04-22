@@ -48,7 +48,9 @@ export default function ProductRow({ title, items, isLoading, error, onRetry, li
           </div>
         ) : (
           items.map((item) => (
-            <LaptopCard key={item._id || item.id} product={item} />
+            <div key={item._id || item.id} className={styles.cardWrapper}>
+              <LaptopCard product={item} />
+            </div>
           ))
         )}
       </div>

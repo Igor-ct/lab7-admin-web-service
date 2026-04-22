@@ -80,7 +80,6 @@
   font-weight: 600;
 }
 
-
 .retryBtn {
   background-color: #ef4444;
   color: white;
@@ -96,19 +95,53 @@
   background-color: #dc2626;
 }
 
-.skeletonCard {
+.skeletonCard, 
+.cardWrapper {
   width: 320px;
   height: 440px; 
-  
   flex-shrink: 0;
+  scroll-snap-align: start;
   border-radius: 16px;
+}
+
+.skeletonCard {
   background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
   background-size: 200% 100%;
   animation: pulse 1.5s infinite linear;
 }
 
-
 @keyframes pulse {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+
+@media (max-width: 1024px) {
+  .scrollContainer { gap: 1rem; }
+  .skeletonCard, .cardWrapper { 
+    width: 300px; 
+    height: 420px; 
+  }
+  .errorState, .emptyState { min-height: 420px; }
+}
+
+@media (max-width: 768px) {
+  .scrollContainer { padding: 0.5rem 0.5rem 1.5rem 0.5rem; }
+  .skeletonCard, .cardWrapper { 
+    width: 280px; 
+    height: 400px; 
+  }
+  .errorState, .emptyState { min-height: 400px; }
+}
+
+@media (max-width: 480px) {
+  .scrollContainer { gap: 0.75rem; }
+  
+  .skeletonCard, .cardWrapper {
+    width: 85vw; 
+    max-width: 280px;
+    height: 380px;
+    scroll-snap-align: center; 
+  }
+  .errorState, .emptyState { min-height: 380px; }
 }
